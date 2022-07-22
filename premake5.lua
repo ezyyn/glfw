@@ -3,7 +3,7 @@
 project "GLFW"
 	kind "StaticLib"
 	language "C"
-	staticruntime "on"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-obj/" .. outputdir .. "/%{prj.name}")
@@ -17,8 +17,15 @@ project "GLFW"
 		"src/init.c",
 		"src/input.c",
 		"src/monitor.c",
+
+		"src/null_init.c",
+		"src/null_joystick.c",
+		"src/null_monitor.c",
+		"src/null_window.c",
+
+		"src/platform.c",
 		"src/vulkan.c",
-		"src/window.c"
+		"src/window.c",
 	}
 	filter "system:linux"
 		pic "On"
@@ -51,6 +58,7 @@ project "GLFW"
 		{
 			"src/win32_init.c",
 			"src/win32_joystick.c",
+			"src/win32_module.c",
 			"src/win32_monitor.c",
 			"src/win32_time.c",
 			"src/win32_thread.c",
